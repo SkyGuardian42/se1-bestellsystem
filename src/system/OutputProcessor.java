@@ -81,11 +81,23 @@ class OutputProcessor implements Components.OutputProcessor {
         // calculate total price
         String fmtPriceTotal = pad(fmtPrice(totalPrice, "", " EUR"), 14, true);
 
+
         // append final line with totals
         sbAllOrders
                 .append(fmtLine("-------------", "‐‐‐‐‐‐‐‐‐‐‐‐‐", printLineWidth))
-                .append("\n").
-                append(fmtLine("Gesamtwert aller Bestellungen:", fmtPriceTotal, printLineWidth));
+                .append("\n")
+                .append(fmtLine("Gesamtwert aller Bestellungen:", fmtPriceTotal, printLineWidth));
+
+
+        if(printVAT) {
+            // calculate VAT
+            long vat = orderProcessor.vat(totalPrice, 1);
+            String fmtPriceVAT = pad(fmtPrice(vat, "", " EUR"), 14, true);
+
+            sbAllOrders
+                    .append("\n")
+                    .append(fmtLine("Im Gesamtbetrag enthaltene Mehrwertsteuer (19%):", fmtPriceVAT, printLineWidth));
+        }
 
         // print sbAllOrders StringBuffer with all output to System.out
         System.out.println(sbAllOrders.toString());

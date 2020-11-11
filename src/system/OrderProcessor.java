@@ -63,7 +63,7 @@ class OrderProcessor implements Components.OrderProcessor {
      */
     @Override
     public long vat(long grossValue) {
-        return 0;
+        return vat(grossValue, 1);
     }
 
     /**
@@ -76,6 +76,16 @@ class OrderProcessor implements Components.OrderProcessor {
      */
     @Override
     public long vat(long grossValue, int rateIndex) {
-        return 0;
+        double taxRate = 0;
+
+        switch(rateIndex) {
+            case 1:
+                taxRate = 0.19;
+                break;
+            case 2:
+                taxRate = 0.07;
+        }
+
+        return Math.round(grossValue * taxRate);
     }
 }

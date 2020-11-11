@@ -24,7 +24,8 @@ public class Application_2 {
         outputProcessor.printOrders(orders, false);
     }
 
-    private static List<Order> createOrderList(Components.DataFactory dataFactory, Components.OutputProcessor outputProcessor) {        // KUNDEN
+    private static List<Order> createOrderList(Components.DataFactory dataFactory, Components.OutputProcessor outputProcessor) {
+        // KUNDEN
         Customer cEric = dataFactory.createCustomer("Eric Schulz-Mueller", "eric2346@gmail.com");
         Customer cAnne = dataFactory.createCustomer("Meyer, Anne", "+4917223524");
         Customer cNadine = dataFactory.createCustomer("Nadine Ulla Blumenfeld", "+4915292454");
