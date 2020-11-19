@@ -80,12 +80,14 @@ class OrderProcessor implements Components.OrderProcessor {
 
         switch(rateIndex) {
             case 1:
-                taxRate = 0.19;
+                taxRate = 1.19;
                 break;
             case 2:
-                taxRate = 0.07;
+                taxRate = 1.07;
         }
 
-        return Math.round(grossValue * taxRate);
+        System.out.println((grossValue - grossValue / taxRate));
+
+        return Math.round(grossValue - grossValue / taxRate);
     }
 }

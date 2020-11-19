@@ -21,7 +21,7 @@ public class Application_2 {
 
         List<Order> orders = createOrderList(dataFactory, outputProcessor);
 
-        outputProcessor.printOrders(orders, false);
+        outputProcessor.printOrders(orders, true);
     }
 
     private static List<Order> createOrderList(Components.DataFactory dataFactory, Components.OutputProcessor outputProcessor) {

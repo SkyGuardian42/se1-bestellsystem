@@ -43,6 +43,7 @@ class OutputProcessor implements Components.OutputProcessor {
         StringBuffer sbLineItem = new StringBuffer();
 
         long totalPrice = 0;
+        long vat = 0;
 
         // add all orders
         for(Order order : orders) {
@@ -63,6 +64,10 @@ class OutputProcessor implements Components.OutputProcessor {
 
                 // Add item price to orderTotal
                 orderTotal += item.getUnitsOrdered() * item.getArticle().getUnitPrice();
+
+                if(printVAT) {
+                    vat += orderProcessor.vat(item.getUnitsOrdered() * item.getArticle().getUnitPrice(),1);
+                }
             }
 
             String itemsAsString =  String.join(", ",itemStrings);
@@ -72,6 +77,8 @@ class OutputProcessor implements Components.OutputProcessor {
 
             // Add order price to total
             totalPrice += orderTotal;
+
+
 
             sbLineItem= fmtLine(orderString, fmtPrice(orderTotal, "EUR", 14), printLineWidth);
             sbLineItem.append("\n");
@@ -91,7 +98,7 @@ class OutputProcessor implements Components.OutputProcessor {
 
         if(printVAT) {
             // calculate VAT
-            long vat = orderProcessor.vat(totalPrice, 1);
+            //long vat = orderProcessor.vat(totalPrice, 1);
             String fmtPriceVAT = pad(fmtPrice(vat, "", " EUR"), 14, true);
 
             sbAllOrders
