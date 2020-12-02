@@ -14,7 +14,7 @@ public class Customer {
         this.id = id;
         this.setLastName(name);
         this.setFirstName("");
-        this.contact = contact;
+        this.setContact(contact);
     }
 
     public String getId() {
@@ -27,6 +27,7 @@ public class Customer {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        if(firstName == null) this.firstName = "";
     }
 
     public String getLastName() {
@@ -35,6 +36,8 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        if(lastName == null) this.lastName = "";
+
     }
 
     public String getContact() {
@@ -43,5 +46,6 @@ public class Customer {
 
     public void setContact(String contact) {
         this.contact = contact;
+        if(contact == null) this.contact = "";
     }
 }
