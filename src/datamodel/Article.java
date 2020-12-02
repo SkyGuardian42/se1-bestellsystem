@@ -12,9 +12,9 @@ public class Article {
 
     protected Article(String id, String description, long price, int units) {
         this.id = id;
-        this.description = description;
-        this.unitPrice = price;
-        this.unitsInStore = units;
+        this.setDescription(description);
+        this.setUnitPrice(price);
+        this.setUnitsInStore(units);
     }
 
     /**
@@ -35,7 +35,11 @@ public class Article {
      * @param description the description to set
      */
     public void setDescription(String description) {
-        this.description = description;
+        if(description == null) {
+            this.description = "";
+        } else {
+            this.description = description;
+        }
     }
 
     /**
@@ -49,7 +53,13 @@ public class Article {
      * @param unitPrice the unitPrice to set
      */
     public void setUnitPrice(long unitPrice) {
-        this.unitPrice = unitPrice;
+        if(unitPrice < 0) {
+            this.unitPrice = 0;
+        } else if (unitPrice == Long.MAX_VALUE) {
+            this.unitPrice = 0;
+        } else {
+            this.unitPrice = unitPrice;
+        }
     }
 
     /**
@@ -63,7 +73,10 @@ public class Article {
      * @param unitsInStore the unitsInStore to set
      */
     public void setUnitsInStore(int unitsInStore) {
-        this.unitsInStore = unitsInStore;
+        if(unitsInStore < 0 || unitsInStore == Integer.MAX_VALUE) {
+            this.unitsInStore = 0;
+        } else {
+            this.unitsInStore = unitsInStore;
+        }
     }
-
 }

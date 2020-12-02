@@ -22,7 +22,12 @@ public class Order {
      */
     protected Order(long id, Date date, Customer customer) {
         this.id = id;
-        this.date = date;
+
+        if(date == null)
+            this.date = new Date();
+        else
+            this.date = date;
+
         this.customer = customer;
         this.items = new ArrayList<>();
     }
@@ -67,6 +72,9 @@ public class Order {
      * @return the order object
      */
     public Order addItem(OrderItem item) {
+        if(item == null || items.contains(item))
+            return this;
+
         this.items.add(item);
         return this;
     }

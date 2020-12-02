@@ -10,9 +10,9 @@ public class OrderItem {
     private int unitsOrdered;
 
     protected OrderItem(String description, Article article, int units) {
-        this.description = description;
+        this.setDescription(description);
         this.article = article;
-        this.unitsOrdered = units;
+        this.setUnitsOrdered(units);
     }
 
     /**
@@ -26,7 +26,10 @@ public class OrderItem {
      * @param description the description to set
      */
     public void setDescription(String description) {
-        this.description = description;
+        if(description == null)
+            this.description = "";
+        else
+            this.description = description;
     }
 
     /**
@@ -40,7 +43,10 @@ public class OrderItem {
      * @param unitsOrdered the unitsOrdered to set
      */
     public void setUnitsOrdered(int unitsOrdered) {
-        this.unitsOrdered = unitsOrdered;
+        if(unitsOrdered < 0)
+            this.unitsOrdered = 0;
+        else
+            this.unitsOrdered = unitsOrdered;
     }
 
     /**
